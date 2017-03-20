@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Shopping List Control</title>
+    
+    <style>
+        div { float: left;  width: 420px;}
+    </style>
+    
+ </head>
+
+<body ng-app='ShoppingListCheckOff'>
+
+    <h3>The List of Items</h3>
+
+    <div ng-controller="ToBuyListController as toBuyList">
+        <h3>To Buy List</h3>
+        
+        <input type="text" ng-model="toBuyList.itemName" placeholder="item name">
+        <input type="text" ng-model="toBuyList.itemQuantity" placeholder="quantity">
+        <button ng-click="toBuyList.addItem();">Add Item</button>
+        
+        <h4 ng-if="toBuyList.check()">No Items To Buy</h4>
+        <ol>
+            <li ng-repeat="item in toBuyList.items">
+                {{item.quantity}} Pack(s) of {{item.name}}                 
+                <button ng-click="toBuyList.bought($index)">Bought</button>
+            </li>
+        </ol>  
+    </div>
+    
+    <div ng-controller="AlreadyBotController as botList">
+        <h3>Already Bought Items</h3>
+        <h4 ng-if="botList.check()">Please Buy The Items From th List</h4>
+        <ol> 
+            <li ng-repeat="item in botList.items">
+                {{item.quantity}} Pack(s) of {{item.name}} 
+            </li>
+        </ol>
+    </div>
+    
+    
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+<script type="text/javascript" src="assignment2.js"></script>
+
+</body>
+
+</html>
